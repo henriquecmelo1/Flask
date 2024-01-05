@@ -42,6 +42,7 @@ def newRoute():
 
 @app.route('/conta')
 def conta():
+    #replicando um vídeo que eu vi na internet
     context = {}
     soma = ''
     num1 = request.args.get('num1')
