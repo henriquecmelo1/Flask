@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Flask</title>
+</head>
+<body>
+    <div>
+        <h3>Estudos</h3>
+        <h5>nome:{{context.usuario}}</h5>
+        <h5>idade:{{context.idade}}</h5>
+    </div>
+    <div>
+        <p>Aula de desenvolvimento web</p><br>
+        <a href="/nova">Rota estática</a><br>
+        <a href="{{url_for('newRoute')}}">Rota dinâmica</a>
+    </div>
+</body>
+</html>
