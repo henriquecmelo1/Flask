@@ -1,5 +1,5 @@
 from src import app, db
-from flask import render_template, url_for, request
+from flask import render_template, url_for, request, redirect
 from src.models import Contato
 from src.forms import ContatoForm
 
@@ -62,20 +62,8 @@ def contatoCerto():
     form = ContatoForm()
     context = {}
 
-    if request.method == 'POST':
-        nome = request.form['nome']
-        email = request.form['email']
-        assunto = request.form['assunto']
-        mensagem = request.form['mensagem']
-
-        contato = Contato(
-            nome = nome,
-            email = email,
-            assunto = assunto,
-            mensagem = mensagem
-        )
-
-        db.session.add(contato)
-        db.session.commit()
-        
-    return render_template('contato.html', context=context, form = form)
+    if form.validate_on_submit():
+        form.save()
+        return redirect(url_for('homepage'))
+            
+    return render_template('contato2.html', context=context, form = form)
