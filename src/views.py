@@ -67,3 +67,20 @@ def contatoCerto():
         return redirect(url_for('homepage'))
             
     return render_template('contato2.html', context=context, form = form)
+
+
+@app.route('/contato/lista')
+def contatoLista():
+
+    if request.method == 'GET':
+        pesquisa = request.args.get('pesquisa-get', '')
+    
+    
+    #dados = Contato.query.with_entities(Contato.id, Contato.nome).order_by('nome').all()
+    dados = Contato.query.order_by('nome')
+
+    if pesquisa != '':
+        dados = dados.filter_by(nome=pesquisa)
+
+    context = {'dados': dados.all()}
+    return render_template('lista_contatos.html', context=context)
